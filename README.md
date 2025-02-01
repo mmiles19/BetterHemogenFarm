@@ -6,13 +6,6 @@ The mod adds a Gizmo to any Pawn (be they Colonist, Slave, or Prisoner), which a
 
 This allows you to select a different Prisoner Interaction Mode, and enjoy the benefits of both.
 
-We're on Steam: https://steamcommunity.com/sharedfiles/filedetails/?id=2967718207
-
-# Table of Contents
-
-* [Introduction](#introduction)
-* [Links](#links)
-
 # Introduction
 
 The mod adds a Gizmo to any Pawn (be they Colonist, Slave, or Prisoner), which allows you to flag them to automatically extract hemogen.
@@ -25,10 +18,11 @@ You can also extract hemogen from any colonist or slave.
 
 The mod attempts to pull off the extraction while the pawn is sleeping, only putting on the Operation bill while they are settling into a long sleep, and withdrawing the Operation bill if they get too close to waking without it being completed yet.
 
-# Links
+# Update
+This is an updated version of Maarx's mod:
+https://steamcommunity.com/sharedfiles/filedetails/?id=2967718207.
+I claim no ownership of this mod.
+This version may be taken down by request from the original author.
 
-We're on Steam: https://steamcommunity.com/sharedfiles/filedetails/?id=2967718207
-
-We're on GitHub: https://github.com/maarxx/BetterHemogenFarm
-
-For reporting bugs or requesting features, Github Issues are better than Steam Workshop Comments.
+- Compatibility with version 1.5.
+- A setting to ignore rest conditions.
