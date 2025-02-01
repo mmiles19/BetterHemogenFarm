@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ModMetaData>
-  <name>BetterHemogenFarm</name>
-  <author>Maarx</author>
-  <url>https://github.com/maarxx/BetterHemogenFarm/</url>
+  <name>BetterHemogenFarmContinued</name>
+  <author>pewpewlord420</author>
   <description>
 The mod adds a Gizmo to any Pawn (be they Colonist, Slave, or Prisoner), which allows you to flag them to automatically extract hemogen.
 
 This allows you to select a different Prisoner Interaction Mode, and enjoy the benefits of both.
+
+This is an updated version of Maarx's mod:
+https://steamcommunity.com/sharedfiles/filedetails/?id=2967718207.
+I claim no ownership of this mod.
+This version may be taken down by request from the original author.
+
+- Compatibility with version 1.5.
+- A setting to ignore rest conditions.
   </description>
-  <packageId>maarx.betterhemogenfarm</packageId>
+  <packageId>pewpewlord420.BetterHemogenFarmContinued</packageId>
   <supportedVersions>
-    <li>1.4</li>
+    <li>1.5</li>
   </supportedVersions>
   <modDependencies>
     <li>
