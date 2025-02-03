@@ -21,9 +21,8 @@ namespace BetterHemogenFarm
             Scribe_Values.Look(ref shouldFarmHemogen, "shouldFarmHemogen", false);
         }
 
-        public override void CompTick()
+        private void ExtractHemogenTick(Pawn pawn)
         {
-            Pawn pawn = Pawn;
             if (shouldFarmHemogen && ModsConfig.BiotechActive && pawn.Spawned && pawn.IsHashIntervalTick(750))
             {
                 Need rest = pawn.needs.rest;
@@ -59,6 +58,12 @@ namespace BetterHemogenFarm
             }
         }
 
+        public override void CompTick()
+        {
+            Pawn pawn = Pawn;
+            ExtractHemogenTick(pawn);
+        }
+
         public virtual void ExposeData()
         {
             Scribe_Values.Look(ref shouldFarmHemogen, "shouldFarmHemogen");
@@ -71,19 +76,27 @@ namespace BetterHemogenFarm
                 yield return item;
             }
             Pawn pawn = Pawn;
-            if (RecipeDefOf.ExtractHemogenPack.Worker.AvailableOnNow(pawn) && (pawn.IsColonist || pawn.IsPrisonerOfColony))
+            foreach (Gizmo item2 in ExtractHemogenGizmo(pawn))
             {
-                Command_Toggle command_Toggle2 = new Command_Toggle();
-                command_Toggle2.defaultLabel = "Automatically Extract Hemogen";
-                command_Toggle2.defaultDesc = (BetterHemoFarmSettings.settings.ignoreRestCondition ? ignoreRestConditionGizmoHoverText : defaultGizmoHoverText);
-                command_Toggle2.hotKey = null;
-                command_Toggle2.icon = DefDatabase<ThingDef>.GetNamed("HemogenPack").uiIcon;
-                command_Toggle2.isActive = (() => shouldFarmHemogen);
-                command_Toggle2.toggleAction = delegate
+                yield return item2;
+            }
+        }
+
+        private IEnumerable<Gizmo> ExtractHemogenGizmo(Pawn)
+        {
+            if (RecipeDefOf.ExtractHemogenPack.Worker.AvailableOnNow(Pawn) && (Pawn.IsColonist || Pawn.IsPrisonerOfColony))
+            {
+                Command_Toggle commandToggle = new Command_Toggle();
+                commandToggle.defaultLabel = "Automatically Extract Hemogen";
+                commandToggle.defaultDesc = "Automatically place the 'Extract Hemogen Pack' bill on this pawn whenever they meet the following conditions:\n\n- Pawn Already Resting\n- Rest Need Below 40%\n- No Blood Loss condition\n\nIf the bill is not completed by 60% rest, it will be removed, try again the next night. This ensures we only take it when pawns can sleep off the worst of it.";
+                commandToggle.hotKey = null;
+                commandToggle.icon = DefDatabase<ThingDef>.GetNamed("HemogenPack").uiIcon;
+                commandToggle.isActive = (() => shouldFarmHemogen);
+                commandToggle.toggleAction = delegate
                 {
                     shouldFarmHemogen = !shouldFarmHemogen;
                 };
-                yield return command_Toggle2;
+                yield return commandToggle;
             }
         }
     }
